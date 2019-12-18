@@ -1,0 +1,47 @@
+<!-- 親テンプレートを読み込む-->
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="mt-5 text-center">
+      <div class="alert alert-primary alert-dismissible" role="alert">
+        <p style="margin-bottom:1em;">
+          <h3><b>アニメ画像判定AIアプリの説明</b></h3>
+        </p>
+        <hr>
+        <h4>
+          <ol>
+            <li style="margin-bottom:1em;" align="left">あなたの顔写真をアップロード後に「判定」
+              ボタンを押してください。</li>
+            </li>
+            <li style="margin-bottom:1em;" align="left">アップロードされた画像の特徴を解析してAIがあなたに最も似ているアニメキャラを
+              自動判定します。</li>
+            <li style="margin-bottom:1em;" align="left">画像は顔が真ん中に写っていると判定確率が高くなります。</li>
+          </ol>
+        </h4>
+      </div>
+    </div>
+    <hr>
+    <form action="{% url 'aniface:predict' %}" method="POST" class="form" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <div class="custom-file">
+          {{ form.image }}
+          <label class="custom-file-label" for="customFile">
+            判定したいファイルを選択してください。
+          </label>
+      </div>
+      <button type="submit" class="btn btn-lg btn-danger">判定する</button>
+
+    </form>
+
+
+
+
+    <!-- 画像表示 -->
+
+    <!-- 画像表示 -->
+  </div>
+</div>
+{% endblock content %}
